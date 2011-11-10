@@ -1,7 +1,10 @@
 name: PortalGel
 main: littlegruz.portalgel.PortalGel
-version: 1.2
+version: 1.3
 commands:
    portalboots:
-      description: Toggles the appearance of a cowsay message on cow death
+      description: Turns on or off the portal boots effect.
       usage: /portalboots <on|off>
+   gelplacement:
+      description: Turns on or off the placement of gel blocks.
+      usage: /gelplacement <on|off>
