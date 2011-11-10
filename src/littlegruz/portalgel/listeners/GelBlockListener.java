@@ -3,6 +3,7 @@ package littlegruz.portalgel.listeners;
 import littlegruz.portalgel.PortalGel;
 
 import org.bukkit.Material;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.BlockPlaceEvent;
 
@@ -21,6 +22,12 @@ public class GelBlockListener extends BlockListener{
          else if(event.getBlock().getData() == 1){
             plugin.getBlockMap().put(event.getBlock().getLocation(), "ORANGE");
          }
+      }
+   }
+   
+   public void onBlockBreak(BlockBreakEvent event){
+      if(plugin.getBlockMap().get(event.getBlock().getLocation()) != null){
+         plugin.getBlockMap().remove(event.getBlock().getLocation());
       }
    }
 }

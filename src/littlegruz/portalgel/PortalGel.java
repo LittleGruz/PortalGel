@@ -63,8 +63,10 @@ public class PortalGel extends JavaPlugin{
       
       PluginManager pm = this.getServer().getPluginManager();
       pm.registerEvent(Event.Type.PLAYER_MOVE, playerListener, Event.Priority.Normal, this);
+      pm.registerEvent(Event.Type.PLAYER_INTERACT, playerListener, Event.Priority.Normal, this);
       pm.registerEvent(Event.Type.ENTITY_DAMAGE, entityListener, Event.Priority.Normal, this);
       pm.registerEvent(Event.Type.BLOCK_PLACE, blockListener, Event.Priority.Normal, this);
+      pm.registerEvent(Event.Type.BLOCK_BREAK, blockListener, Event.Priority.Normal, this);
       bootsActive = false;
       placing = false;
       log.info("Portal Gel v1.3 enabled");

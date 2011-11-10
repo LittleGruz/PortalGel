@@ -6,6 +6,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerListener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.util.Vector;
@@ -77,6 +78,17 @@ public class GelPlayerListener extends PlayerListener{
             else if(fall >= 10.80){
                player.setVelocity(new Vector(0,1.62,0));
             }
+         }
+      }
+   }
+   
+   public void onPlayerInteract(PlayerInteractEvent event){
+      if(event.getClickedBlock().getType().compareTo(Material.WOOL) == 0 && plugin.isPlacing()){
+         if(event.getClickedBlock().getData() == 11){
+            plugin.getBlockMap().put(event.getClickedBlock().getLocation(), "BLUE");
+         }
+         else if(event.getClickedBlock().getData() == 1){
+            plugin.getBlockMap().put(event.getClickedBlock().getLocation(), "ORANGE");
          }
       }
    }
