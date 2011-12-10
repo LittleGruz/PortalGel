@@ -8,3 +8,10 @@ commands:
    gelplacement:
       description: Turns on or off the placement of gel blocks.
       usage: /gelplacement <on|off>
+permissions:
+   portalgel.gelplacement:
+      description: Allows the placement of blocks
+      default: true
+   portalgel.portalboots:
+      description: Allows the activation of boots
+      default: true

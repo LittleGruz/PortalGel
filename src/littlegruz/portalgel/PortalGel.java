@@ -97,33 +97,41 @@ public class PortalGel extends JavaPlugin{
 
    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
       if(commandLabel.compareToIgnoreCase("portalboots") == 0){
-         if(args.length == 1){
-            if(args[0].compareToIgnoreCase("on") == 0){
-               bootsActive = true;
-               sender.sendMessage("Portal boots turned on");
+         if(sender.hasPermission("portalgel.portalboots")){
+            if(args.length == 1){
+               if(args[0].compareToIgnoreCase("on") == 0){
+                  bootsActive = true;
+                  sender.sendMessage("Portal boots turned on");
+               }
+               else if(args[0].compareToIgnoreCase("off") == 0){
+                  bootsActive = false;
+                  sender.sendMessage("Portal boots turned off");
+               }
             }
-            else if(args[0].compareToIgnoreCase("off") == 0){
-               bootsActive = false;
-               sender.sendMessage("Portal boots turned off");
-            }
-         }
-         else
-            sender.sendMessage("Correct format for command is: /portalboots <on|off>");
+            else
+               sender.sendMessage("Correct format for command is: /portalboots <on|off>");
+
+         }else
+            sender.sendMessage("You don't have sufficient permissions");
          return true;
       }
       else if(commandLabel.compareToIgnoreCase("gelplacement") == 0){
-         if(args.length == 1){
-            if(args[0].compareToIgnoreCase("on") == 0){
-               placing = true;
-               sender.sendMessage("Gel placement is turned on");
+         if(sender.hasPermission("portalgel.gelplacement")){
+            if(args.length == 1){
+               if(args[0].compareToIgnoreCase("on") == 0){
+                  placing = true;
+                  sender.sendMessage("Gel placement is turned on");
+               }
+               else if(args[0].compareToIgnoreCase("off") == 0){
+                  placing = false;
+                  sender.sendMessage("Gel placement is turned off");
+               }
             }
-            else if(args[0].compareToIgnoreCase("off") == 0){
-               placing = false;
-               sender.sendMessage("Gel placement is turned off");
-            }
+            else
+               sender.sendMessage("Correct format for command is: /gelplacement <on|off>");
          }
          else
-            sender.sendMessage("Correct format for command is: /gelplacement <on|off>");
+            sender.sendMessage("You don't have sufficient permissions");
          return true;
       }
       return false;
