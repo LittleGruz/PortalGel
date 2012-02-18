@@ -7,18 +7,20 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 //import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerListener;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.util.Vector;
 
-public class GelPlayerListener extends PlayerListener{
+public class GelPlayerListener implements Listener{
 
    public static PortalGel plugin;
 
    public GelPlayerListener(PortalGel instance){
       plugin = instance;
    }
-   
+
+   @EventHandler
    public void onPlayerMove(PlayerMoveEvent event){
       Player player = event.getPlayer();
       Location loc = player.getLocation();
