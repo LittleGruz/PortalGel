@@ -62,7 +62,7 @@ public class PortalGel extends JavaPlugin{
       
       bootsActive = false;
       placing = false;
-      log.info("Portal Gel v1.3.1 enabled");
+      log.info("Portal Gel v1.3.2 enabled");
    }
 
    public void onDisable(){
@@ -85,7 +85,7 @@ public class PortalGel extends JavaPlugin{
       }catch(IOException e){
          log.info("Error saving Portal blocks");
       }
-      log.info("Portal Gel v1.3.1 disabled");
+      log.info("Portal Gel v1.3.2 disabled");
    }
 
    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
