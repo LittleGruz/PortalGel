@@ -10,7 +10,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 
 public class GelEntityListener implements Listener {
 
-	public PortalGel plugin;
+	private PortalGel plugin;
 
 	public GelEntityListener(PortalGel instance) {
 		plugin = instance;
@@ -29,4 +29,5 @@ public class GelEntityListener implements Listener {
 			}
 		}
 	}
+
 }

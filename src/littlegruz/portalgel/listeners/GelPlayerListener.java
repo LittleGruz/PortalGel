@@ -14,7 +14,7 @@ import org.bukkit.util.Vector;
 
 public class GelPlayerListener implements Listener {
 
-	public PortalGel plugin;
+	private PortalGel plugin;
 
 	public GelPlayerListener(PortalGel instance) {
 		plugin = instance;
