@@ -42,9 +42,20 @@ public class PortalGel extends JavaPlugin{
          BufferedReader br = new BufferedReader(new FileReader(blockFile));
          StringTokenizer st;
          String input;
+         String world;
+         
          while((input = br.readLine()) != null){
             st = new StringTokenizer(input, " ");
-            blockMap.put(new Location(getServer().getWorld(UUID.fromString(st.nextToken())), Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken())), st.nextToken());
+            
+            /* This stuff is here so users do not need to worry about converting
+             * from world UIDs to world names */
+            world = st.nextToken();
+            try{
+            if(getServer().getWorld(UUID.fromString(world)) != null)
+               world = getServer().getWorld(UUID.fromString(world)).getName();
+            }catch(IllegalArgumentException e){}
+            
+            blockMap.put(new Location(getServer().getWorld(world), Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken())), st.nextToken());
          }
          br.close();
          
@@ -79,7 +90,7 @@ public class PortalGel extends JavaPlugin{
          Iterator<Map.Entry<Location, String>> it = blockMap.entrySet().iterator();
          while(it.hasNext()){
             Entry<Location, String> block = it.next();
-            bw.write(block.getKey().getWorld().getUID().toString() + " "
+            bw.write(block.getKey().getWorld().getName() + " "
                   + Double.toString(block.getKey().getX()) + " "
                   + Double.toString(block.getKey().getY()) + " "
                   + Double.toString(block.getKey().getZ()) + " "
