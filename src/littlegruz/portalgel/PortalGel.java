@@ -15,17 +15,17 @@ import java.util.UUID;
 import java.util.Map.Entry;
 import java.util.logging.Logger;
 
+import littlegruz.portalgel.commands.Apparel;
+import littlegruz.portalgel.commands.Gel;
 import littlegruz.portalgel.listeners.GelBlockListener;
 import littlegruz.portalgel.listeners.GelEntityListener;
 import littlegruz.portalgel.listeners.GelPlayerListener;
 
 import org.bukkit.Location;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class PortalGel extends JavaPlugin{
-   Logger log = Logger.getLogger("This is MINECRAFT!");
+   private Logger log = Logger.getLogger("This is MINECRAFT!");
    private boolean bootsActive;
    private boolean placing;
    private File blockFile;
@@ -59,10 +59,14 @@ public class PortalGel extends JavaPlugin{
       getServer().getPluginManager().registerEvents(new GelBlockListener(this), this);
       getServer().getPluginManager().registerEvents(new GelEntityListener(this), this);
       getServer().getPluginManager().registerEvents(new GelPlayerListener(this), this);
+
+      getCommand("gelplacement").setExecutor(new Gel(this));
+      getCommand("portalboots").setExecutor(new Apparel(this));
       
       bootsActive = false;
       placing = false;
-      log.info("Portal Gel v1.3.2 enabled");
+      
+      log.info(this.toString() + " enabled");
    }
 
    public void onDisable(){
@@ -85,57 +89,23 @@ public class PortalGel extends JavaPlugin{
       }catch(IOException e){
          log.info("Error saving Portal blocks");
       }
-      log.info("Portal Gel v1.3.2 disabled");
-   }
-
-   public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
-      if(commandLabel.compareToIgnoreCase("portalboots") == 0){
-         if(sender.hasPermission("portalgel.portalboots")){
-            if(args.length == 1){
-               if(args[0].compareToIgnoreCase("on") == 0){
-                  bootsActive = true;
-                  sender.sendMessage("Portal boots turned on");
-               }
-               else if(args[0].compareToIgnoreCase("off") == 0){
-                  bootsActive = false;
-                  sender.sendMessage("Portal boots turned off");
-               }
-            }
-            else
-               sender.sendMessage("Correct format for command is: /portalboots <on|off>");
-
-         }else
-            sender.sendMessage("You don't have sufficient permissions");
-         return true;
-      }
-      else if(commandLabel.compareToIgnoreCase("gelplacement") == 0){
-         if(sender.hasPermission("portalgel.gelplacement")){
-            if(args.length == 1){
-               if(args[0].compareToIgnoreCase("on") == 0){
-                  placing = true;
-                  sender.sendMessage("Gel placement is turned on");
-               }
-               else if(args[0].compareToIgnoreCase("off") == 0){
-                  placing = false;
-                  sender.sendMessage("Gel placement is turned off");
-               }
-            }
-            else
-               sender.sendMessage("Correct format for command is: /gelplacement <on|off>");
-         }
-         else
-            sender.sendMessage("You don't have sufficient permissions");
-         return true;
-      }
-      return false;
+      log.info(this.toString() + " disabled");
    }
 
    public boolean isBootsActive(){
       return bootsActive;
    }
 
+   public void setBoots(boolean boots){
+      bootsActive = boots;
+   }
+
    public boolean isPlacing(){
       return placing;
+   }
+
+   public void setPlacing(boolean placing){
+      this.placing = placing;
    }
 
    public HashMap<Location, String> getBlockMap(){

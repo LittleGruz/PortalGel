@@ -15,3 +15,5 @@ permissions:
    portalgel.portalboots:
       description: Allows the activation of boots
       default: true
+softdepend: [Multiverse-Core]
+softdepend: [My Worlds]
