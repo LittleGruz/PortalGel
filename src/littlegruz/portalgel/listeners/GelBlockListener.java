@@ -22,7 +22,7 @@ public class GelBlockListener implements Listener{
             plugin.getBlockMap().put(event.getBlock().getLocation(), "BLUE");
          }
          else if(event.getBlock().getData() == 1){
-            plugin.getBlockMap().put(event.getBlock().getLocation(), "ORANGE");
+            plugin.getBlockMap().put(event.getBlock().getLocation(), "BLACK");
          }
       }
    }
